@@ -80,7 +80,7 @@
         <ECAction Output="CNF" />
       </ECState>
       <ECState Name="waitCS" Comment="waiting to enter critical section" x="323.52942" y="1576.4706" >
-        <ECAction Algorithm="StopConveyer" Output="STOP" />
+        <ECAction Algorithm="StopConveyer" />
         <ECAction Output="CNF" />
       </ECState>
       <ECState Name="HAVETOKEN" x="1429.4117" y="1494.1177" >
@@ -88,7 +88,7 @@
         <ECAction Output="CNF" />
       </ECState>
       <ECState Name="enterCS" x="1141.1764" y="2052.9412" >
-        <ECAction Algorithm="StartConveyer" Output="START" />
+        <ECAction Algorithm="StartConveyer" />
         <ECAction Output="CNF" />
       </ECState>
       <ECState Name="exitCS" x="3082.3528" y="1194.1177" >

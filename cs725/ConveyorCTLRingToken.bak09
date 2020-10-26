@@ -91,7 +91,7 @@
       <ECTransition Source="HAVETOKEN" Destination="NOTOKEN" Condition="REQ&#38;PE" Comment="Have the token but dont want to use critical section" x="1300.0" y="1076.4706" />
       <ECTransition Source="waitCS" Destination="enterCS" Condition="TokenGranted&#38;!TokenIN" Comment="Other process is giving access" x="688.2353" y="1729.4117" />
       <ECTransition Source="HAVETOKEN" Destination="enterCS" Condition="REQ&#38;!PE" Comment="The process wants to enter critical section" x="1194.1177" y="1776.4706" />
-      <ECTransition Source="exitCS" Destination="INIT" Condition="REQ&#38;!PE13" Comment="Last bag has exited critical section" x="2064.7058" y="229.41176" />
+      <ECTransition Source="exitCS" Destination="INIT" Condition="1" x="2064.7058" y="229.41176" />
       <ECTransition Source="enterCS" Destination="exitCS" Condition="REQ&#38;PE" Comment="All items waiting go through" x="2100.0" y="2064.7058" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >

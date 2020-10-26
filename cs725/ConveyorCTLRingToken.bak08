@@ -13,15 +13,11 @@
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
-        <With Var="TokenIN" />
-        <With Var="PE13" />
       </Event>
       <Event Name="REQ" Comment="Normal Execution Request" >
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
-        <With Var="TokenIN" />
-        <With Var="PE13" />
       </Event>
       <Event Name="CAS_STOP" >
       </Event>
@@ -53,7 +49,6 @@
       <VarDeclaration Name="Block" Type="BOOL" />
       <VarDeclaration Name="Candidate" Type="BOOL" />
       <VarDeclaration Name="TokenIN" Type="BOOL" />
-      <VarDeclaration Name="PE13" Type="BOOL" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="MotoRotate" Type="BOOL" Comment="Output event qualifier" />
@@ -73,26 +68,11 @@
         <ECAction Algorithm="INIT" Output="INITO" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="NOTOKEN" x="858.8235" y="788.2353" >
+      <ECState Name="NOTOKEN" x="1441.1764" y="988.2353" >
         <ECAction Algorithm="FreeToken" Output="TokenGiven" />
       </ECState>
-      <ECState Name="waitCS" Comment="waiting to enter critical section" x="494.11765" y="1517.647" >
-      </ECState>
-      <ECState Name="HAVETOKEN" x="1329.4117" y="1588.2352" >
-      </ECState>
-      <ECState Name="enterCS" x="1141.1764" y="2058.8235" >
-      </ECState>
-      <ECState Name="exitCS" x="2229.4116" y="1317.647" >
-      </ECState>
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="658.8235" y="111.7647" />
-      <ECTransition Source="INIT" Destination="NOTOKEN" Condition="1" x="735.2941" y="617.64703" />
-      <ECTransition Source="NOTOKEN" Destination="waitCS" Condition="REQ&#38;!PE" Comment="When we want to enter the section" x="247.05882" y="1088.2352" />
-      <ECTransition Source="NOTOKEN" Destination="HAVETOKEN" Condition="TokenGranted&#38;!TokenIN" Comment="Other token is granting access" x="747.05884" y="1164.7058" />
-      <ECTransition Source="HAVETOKEN" Destination="NOTOKEN" Condition="REQ&#38;PE" Comment="Have the token but dont want to use critical section" x="1300.0" y="1076.4706" />
-      <ECTransition Source="waitCS" Destination="enterCS" Condition="TokenGranted&#38;!TokenIN" Comment="Other process is giving access" x="688.2353" y="1729.4117" />
-      <ECTransition Source="HAVETOKEN" Destination="enterCS" Condition="REQ&#38;!PE" Comment="The process wants to enter critical section" x="1194.1177" y="1776.4706" />
-      <ECTransition Source="exitCS" Destination="INIT" Condition="REQ&#38;!PE13" Comment="Last bag has exited critical section" x="2064.7058" y="229.41176" />
-      <ECTransition Source="enterCS" Destination="exitCS" Condition="REQ&#38;PE" Comment="All items waiting go through" x="2100.0" y="2064.7058" />
+      <ECTransition Source="INIT" Destination="NOTOKEN" Condition="1" x="1317.647" y="817.64703" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
     <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;&#10;System.out.println(this + &#34; &#34; + MotoRotate);&#10;System.out.println(MotoRotate);&#10;&#10;&#10;&#10;TokenOUT:= FALSE;&#10;" />

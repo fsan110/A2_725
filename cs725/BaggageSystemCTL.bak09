@@ -188,10 +188,10 @@
           <Parameter Name="Block" Value="0" />
           <Parameter Name="PE" Value="0" />
         </FB>
-        <FB Name="FCTwo" Type="TwoConCtlRingToken" x="5600.0" y="52.941177" >
+        <FB Name="FCTwo" Type="TwoConCtlRingToken" x="5617.647" y="176.47058" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
-        <FB Name="TCOne" Type="ThreeConCtl" x="3894.1177" y="1652.9412" >
+        <FB Name="TCOne" Type="ThreeConCtl" x="3711.7646" y="1400.0" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
         <FB Name="FCThree" Type="TwoConCtl" x="2905.8823" y="2735.294" >
@@ -253,8 +253,6 @@
           <Connection Source="FCOne.INITO" Destination="TCOne.INIT" dx1="382.35294" />
           <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" />
           <Connection Source="FCThree.INITO" Destination="FCFour.INIT" dx1="1029.4117" />
-          <Connection Source="FCTwo.TokenGiven" Destination="TCOne.TokenGranted" dx1="29.411764" />
-          <Connection Source="TCOne.TokenGiven" Destination="FCTwo.TokenGranted" dx1="411.7647" />
         </EventConnections>
         <DataConnections>
           <Connection Source="FCTwo.BlockCon" Destination="TCOne.Block" dx1="29.411764" dx2="11.764706" dy="2800.0" />
@@ -272,10 +270,6 @@
           <Connection Source="FCFour.MotoRotate1" Destination="ConControl.SD_10" dx1="1358.8235" dx2="53.333332" dy="586.6666" />
           <Connection Source="FCFour.MotoRotate2" Destination="ConControl.SD_11" dx1="1417.647" dx2="53.333332" dy="466.66666" />
           <Connection Source="PE.RD_5" Destination="TCOne.PE" dx1="147.05882" dx2="66.666664" dy="793.3333" />
-          <Connection Source="PE.RD_8" Destination="TCOne.PE13" dx1="1541.1764" />
-          <Connection Source="PE.RD_8" Destination="FCTwo.PE13" dx1="3023.5293" />
-          <Connection Source="TCOne.TokenOut" Destination="FCTwo.TokenIN" dx1="888.2353" />
-          <Connection Source="FCTwo.TokenOUT" Destination="TCOne.TokenIN" dx1="29.411764" dx2="11.764706" dy="2605.8823" />
         </DataConnections>
       </FBNetwork>
     </Resource>

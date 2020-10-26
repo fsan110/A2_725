@@ -60,9 +60,7 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
-    <FB Name="FC11" Type="ConveyorCTLRingToken" x="347.0588" y="617.64703" >
-      <Parameter Name="ID" Value="7" />
-    </FB>
+    <FB Name="FC11" Type="ConveyorCTLRingToken" x="347.0588" y="617.64703" />
     <FB Name="FC12" Type="ConveyorCTL" x="2035.2941" y="617.64703" >
       <Parameter Name="PE" Value="0" />
       <Parameter Name="Block" Value="0" />

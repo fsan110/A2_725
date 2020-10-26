@@ -63,9 +63,7 @@
       <Parameter Name="Block" Value="0" />
       <Parameter Name="Candidate" Value="0" />
     </FB>
-    <FB Name="FC12" Type="ConveyorCTLRingToken" x="1888.2352" y="452.94116" >
-      <Parameter Name="ID" Value="4" />
-    </FB>
+    <FB Name="FC12" Type="ConveyorCTLRingToken" x="1888.2352" y="452.94116" />
     <EventConnections>
       <Connection Source="INIT" Destination="FC11.INIT" dx1="223.5294" />
       <Connection Source="REQ" Destination="FC11.REQ" dx1="217.64705" />
@@ -77,8 +75,6 @@
       <Connection Source="FC12.STOP" Destination="FC11.CAS_STOP" dx1="100.0" dx2="100.0" dy="-447.0588" />
       <Connection Source="FC12.START" Destination="FC11.CAS_START" dx1="129.41176" dx2="129.41176" dy="-605.8823" />
       <Connection Source="FC11.INITO" Destination="FC12.INIT" dx1="141.17647" />
-      <Connection Source="TokenGranted" Destination="FC12.TokenGranted" dx1="1635.2941" />
-      <Connection Source="FC12.TokenGiven" Destination="TokenGiven" dx1="2911.7646" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Block" Destination="FC12.Block" dx1="1758.8235" />
@@ -88,8 +84,6 @@
       <Connection Source="FC11.MotoRotate" Destination="MotoRotate1" dx1="1135.2941" />
       <Connection Source="FC12.MotoRotate" Destination="MotoRotate2" dx1="2929.4116" />
       <Connection Source="PE13" Destination="FC12.PE13" dx1="1770.5883" />
-      <Connection Source="TokenIN" Destination="FC12.TokenIN" dx1="1723.5294" />
-      <Connection Source="FC12.TokenOUT" Destination="TokenOUT" dx1="2888.2354" />
     </DataConnections>
   </FBNetwork>
 </FBType>

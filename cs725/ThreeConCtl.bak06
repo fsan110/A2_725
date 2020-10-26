@@ -40,7 +40,7 @@
       </Event>
       <Event Name="STOP" >
       </Event>
-      <Event Name="TokenGiven" >
+      <Event Name="TokenRelease" >
         <With Var="TokenOut" />
       </Event>
     </EventOutputs>

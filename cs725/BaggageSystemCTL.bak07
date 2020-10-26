@@ -188,7 +188,7 @@
           <Parameter Name="Block" Value="0" />
           <Parameter Name="PE" Value="0" />
         </FB>
-        <FB Name="FCTwo" Type="TwoConCtlRingToken" x="5617.647" y="176.47058" >
+        <FB Name="FCTwo" Type="TwoConCtl" x="5494.1177" y="264.70587" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
         <FB Name="TCOne" Type="ThreeConCtl" x="3711.7646" y="1400.0" >
@@ -221,7 +221,7 @@
           <Connection Source="BagInOne.INITO" Destination="BagIn1.INIT" dx1="158.82353" dx2="46.666664" dy="-773.3333" />
           <Connection Source="BagInOne.IND" Destination="BagIn1.REQ" dx1="152.94118" dx2="46.666664" dy="-886.6666" />
           <Connection Source="BagInThree.INITO" Destination="BagIn3.INIT" dx1="58.82353" />
-          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="29.411764" />
+          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="29.411764" dx2="0.0" dy="-70.588234" />
           <Connection Source="BagInTwo.INITO" Destination="BagIn2.INIT" dx1="47.058823" />
           <Connection Source="PE.IND" Destination="FCTwo.REQ" dx1="311.7647" dx2="129.41176" dy="-2205.8823" />
           <Connection Source="PE.IND" Destination="TCOne.REQ" dx1="1294.1177" dx2="126.666664" dy="-2206.6665" />
@@ -244,14 +244,14 @@
           <Connection Source="FCOne.CNF" Destination="ConControl.REQ" dx1="1388.2352" />
           <Connection Source="FCFour.CNF" Destination="ConControl.REQ" dx1="1052.9412" dx2="153.33333" dy="-2646.6665" />
           <Connection Source="FCTwo.CNF" Destination="ConControl.REQ" dx1="2023.5294" />
-          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="29.411764" />
+          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="29.411764" dx2="0.0" dy="-958.8235" />
           <Connection Source="BagIn3.INITO" Destination="BagInFour.INIT" dx1="29.411764" dx2="5.882353" dy="-1876.4706" />
           <Connection Source="BagIn4.INITO" Destination="PE.INIT" dx1="229.41176" dx2="26.666666" dy="693.3333" />
           <Connection Source="PE.INITO" Destination="ConControl.INIT" dx1="2276.4705" />
           <Connection Source="START.COLD" Destination="FCOne.INIT" dx1="1935.2941" />
           <Connection Source="FCOne.INITO" Destination="FCTwo.INIT" dx1="400.0" />
           <Connection Source="FCOne.INITO" Destination="TCOne.INIT" dx1="382.35294" />
-          <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" />
+          <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" dx2="0.0" dy="-394.11765" />
           <Connection Source="FCThree.INITO" Destination="FCFour.INIT" dx1="1029.4117" />
         </EventConnections>
         <DataConnections>

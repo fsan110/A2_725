@@ -20,7 +20,6 @@
         <With Var="PE" />
       </Event>
       <Event Name="TokenGranted" >
-        <With Var="TokenIN" />
       </Event>
     </EventInputs>
     <EventOutputs>
@@ -41,7 +40,6 @@
       <Event Name="STOP" >
       </Event>
       <Event Name="TokenRelease" >
-        <With Var="TokenOut" />
       </Event>
     </EventOutputs>
     <InputVars>

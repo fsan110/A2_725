@@ -41,11 +41,16 @@
       <VarDeclaration Name="Candidate" Type="BOOL" />
       <VarDeclaration Name="Block" Type="BOOL" />
       <VarDeclaration Name="PE" Type="BOOL" />
+      <VarDeclaration Name="LamportIn" Type="INT" />
+      <VarDeclaration Name="GrantIn" Type="BOOL" />
+      <VarDeclaration Name="PE14" Type="BOOL" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="MotoRotate1" Type="BOOL" />
       <VarDeclaration Name="MotoRotate2" Type="BOOL" />
       <VarDeclaration Name="BlockCon" Type="BOOL" />
+      <VarDeclaration Name="LamportOut" Type="INT" />
+      <VarDeclaration Name="GrantOut" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork >

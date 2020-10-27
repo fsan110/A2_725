@@ -78,41 +78,37 @@
         <ECAction Algorithm="INIT" Output="INITO" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="DONT_WANT" x="1600.0" y="929.41174" >
-        <ECAction Algorithm="GrantAccess" Output="CNF" />
-      </ECState>
-      <ECState Name="WAIT" x="1017.64703" y="1311.7646" >
+      <ECState Name="WAIT" x="694.1176" y="1176.4706" >
         <ECAction Algorithm="IncrementClock" Output="CNF" />
-        <ECAction Algorithm="DenyAccess" />
+        <ECAction Algorithm="StopConveyor" Output="TimeStampOut" />
       </ECState>
-      <ECState Name="HELD" Comment="Inside Critical Section" x="1000.0" y="1764.7058" >
+      <ECState Name="DONT_WANT" x="1535.2941" y="505.88235" >
+        <ECAction Algorithm="IncrementClock" Output="CNF" />
+        <ECAction Algorithm="GrantAccess" Output="TimeStampOut" />
       </ECState>
-      <ECState Name="Exit_CS" x="582.3529" y="2129.4116" >
-        <ECAction Algorithm="GrantAccess" Output="CNF" />
-      </ECState>
-      <ECState Name="COMPARE_TIME" x="3147.0588" y="1458.8235" >
+      <ECState Name="DECIDER" x="1217.6471" y="2464.7058" >
+        <ECAction Algorithm="IncrementClock" />
         <ECAction Algorithm="CheckLamport" Output="CNF" />
       </ECState>
-      <ECState Name="STOP_CONVEYOR" x="3147.0588" y="1982.3529" >
-        <ECAction Algorithm="StopConveyor" Output="CNF" />
+      <ECState Name="ENTER_CS" x="3052.9412" y="2611.7646" >
+        <ECAction Algorithm="IncrementClock" Output="CNF" />
+        <ECAction Algorithm="StartConveyor" />
       </ECState>
-      <ECState Name="START_CONVEYOR" x="2170.5881" y="2264.7058" >
-        <ECAction Algorithm="StartConveyor" Output="CNF" />
+      <ECState Name="EXIT_CS" x="3594.1177" y="947.0588" >
+        <ECAction Algorithm="ResetLamport" Output="CNF" />
       </ECState>
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="923.5294" y="429.41174" />
-      <ECTransition Source="INIT" Destination="DONT_WANT" Condition="1" x="1282.3529" y="547.05884" />
-      <ECTransition Source="DONT_WANT" Destination="WAIT" Condition="REQ&#38;!PE" x="1341.1764" y="1147.0588" />
-      <ECTransition Source="WAIT" Destination="HELD" Condition="REQ&#38;GrantIn" x="1000.0" y="1541.1764" />
-      <ECTransition Source="HELD" Destination="Exit_CS" Condition="REQ&#38;!PE14" x="817.64703" y="1976.4706" />
-      <ECTransition Source="Exit_CS" Destination="DONT_WANT" Condition="1" x="252.94118" y="929.41174" />
-      <ECTransition Source="WAIT" Destination="COMPARE_TIME" Condition="REQ&#38;!GrantIn" x="2700.0" y="1294.1177" />
-      <ECTransition Source="COMPARE_TIME" Destination="STOP_CONVEYOR" Condition="REQ&#38;!GrantIn" x="3147.0588" y="1670.5883" />
-      <ECTransition Source="COMPARE_TIME" Destination="HELD" Condition="REQ&#38;GrantIn" x="1729.4117" y="1658.8235" />
-      <ECTransition Source="STOP_CONVEYOR" Destination="START_CONVEYOR" Condition="REQ&#38;GrantIn" x="2470.5881" y="2176.4705" />
-      <ECTransition Source="START_CONVEYOR" Destination="HELD" Condition="1" x="1394.1177" y="1929.4117" />
+      <ECTransition Source="INIT" Destination="DONT_WANT" Condition="1" x="1323.5294" y="358.82352" />
+      <ECTransition Source="DONT_WANT" Destination="WAIT" Condition="REQ&#38;!PE" x="705.8823" y="988.2353" />
+      <ECTransition Source="WAIT" Destination="DECIDER" Condition="TimeStampIn&#38;REQ&#38;!GrantIn" x="923.5294" y="2223.5293" />
+      <ECTransition Source="DECIDER" Destination="WAIT" Condition="REQ&#38;!GrantOut" x="235.29411" y="2317.647" />
+      <ECTransition Source="DECIDER" Destination="ENTER_CS" Condition="REQ&#38;GrantIn" x="2829.4116" y="3535.294" />
+      <ECTransition Source="ENTER_CS" Destination="EXIT_CS" Condition="REQ&#38;PE" x="4564.7056" y="1741.1764" />
+      <ECTransition Source="EXIT_CS" Destination="DONT_WANT" Condition="REQ&#38;!PE14" x="2458.8235" y="123.52941" />
+      <ECTransition Source="WAIT" Destination="ENTER_CS" Condition="REQ&#38;TimeStampIn&#38;GrantIn" x="2305.8823" y="1964.7058" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;GrantOut := FALSE;&#10;&#10;&#10;System.out.println(&#34;Conveyor: &#34;+ID+&#34; Multicast INIT&#34;);&#10;" />
+    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;&#10;&#10;System.out.println(&#34;Conveyor: &#34;+ID+&#34; Multicast INIT&#34;);&#10;" />
   </Algorithm>
   <Algorithm Name="REQ" Comment="Normally executed algorithm" >
     <ST Text="System.out.println(this +  &#34; -> Candidate&#34; + Candidate);&#10;IF Candidate THEN&#10;IF lastPE !:= PE THEN&#10;IF NOT PE THEN&#10;BlockCon:= TRUE;&#10;System.out.println(&#34;BlockCon = true&#34;);&#10;ELSE&#10;BlockCon:=FALSE;&#10;System.out.println(&#34;BlockCon = false&#34;);&#10;END_IF&#10;lastPE := PE;&#10;END_IF&#10;IF lastBlock !:= Block THEN&#10;IF Block THEN&#10;STOP.serviceEvent(this);&#10;MotoRotate := FALSE;&#10;System.out.println(&#34;Cas Stop&#34;);&#10;ELSE&#10;START.serviceEvent(this);&#10;MotoRotate := TRUE;&#10;System.out.println(&#34;Cas Start&#34;);&#10;END_IF&#10;lastBlock := Block;&#10;END_IF&#10;END_IF&#10;" />
@@ -140,9 +136,6 @@
   </Algorithm>
   <Algorithm Name="ResetLamport" >
     <Other Language="Java" Text="lamportClock.value = 0;&#10;System.out.println(&#34;Conveyor: &#34;+ ID.value + &#34; Reset the Lamport Clock&#34;);&#10;" />
-  </Algorithm>
-  <Algorithm Name="DenyAccess" >
-    <Other Language="Java" Text="GrantOut.value = false;&#10;" />
   </Algorithm>
   </BasicFB>
 </FBType>

@@ -191,10 +191,10 @@
         <FB Name="FCTwo" Type="TwoConCtlRingToken" x="5600.0" y="52.941177" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
-        <FB Name="TCOne" Type="ThreeConCtl" x="5594.1177" y="1794.1176" >
+        <FB Name="TCOne" Type="ThreeConCtl" x="4776.4707" y="1758.8235" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
-        <FB Name="FCThree" Type="TwoConCtl" x="3182.3528" y="1923.5294" >
+        <FB Name="FCThree" Type="TwoConCtl" x="2935.294" y="1811.7646" >
           <Parameter Name="Candidate" Value="0" />
           <Parameter Name="Block" Value="0" />
           <Parameter Name="PE" Value="0" />
@@ -210,7 +210,7 @@
           <Parameter Name="LABEL" Value="&#34;BAG IN 4&#34;" />
         </FB>
         <FB Name="BagIn4" Type="PUBL_0" x="623.5294" y="2664.7058" />
-        <FB Name="FCFour" Type="TwoConCtlMultiCast" x="6923.5293" y="2723.5293" >
+        <FB Name="FCFour" Type="TwoConCtlMultiCast" x="6547.0586" y="1517.647" >
           <Parameter Name="Candidate" Value="0" />
           <Parameter Name="Block" Value="0" />
         </FB>
@@ -250,7 +250,7 @@
           <Connection Source="START.COLD" Destination="FCOne.INIT" dx1="1935.2941" />
           <Connection Source="FCOne.INITO" Destination="FCTwo.INIT" dx1="400.0" />
           <Connection Source="FCOne.INITO" Destination="TCOne.INIT" dx1="382.35294" />
-          <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" />
+          <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" dx2="0.0" dy="-394.11765" />
           <Connection Source="FCThree.INITO" Destination="FCFour.INIT" dx1="1029.4117" />
           <Connection Source="FCTwo.TokenGiven" Destination="TCOne.TokenGranted" dx1="29.411764" dx2="0.0" dy="-335.2941" />
           <Connection Source="TCOne.TokenGiven" Destination="FCTwo.TokenGranted" dx1="411.7647" />

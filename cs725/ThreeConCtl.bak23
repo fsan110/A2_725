@@ -76,6 +76,7 @@
       <Parameter Name="ID" Value="7" />
     </FB>
     <FB Name="FC12" Type="ConveyorCTLMultiCast" x="2035.2941" y="617.64703" >
+      <Parameter Name="PE" Value="0" />
       <Parameter Name="Block" Value="0" />
       <Parameter Name="Candidate" Value="0" />
       <Parameter Name="ID" Value="8" />
@@ -119,7 +120,6 @@
       <Connection Source="FC12.GrantOut" Destination="GrantOut" dx1="3094.1177" />
       <Connection Source="LamportIn" Destination="FC12.LamportIN" dx1="1841.1764" />
       <Connection Source="FC12.LamportOUT" Destination="LamportOut" dx1="3129.4116" />
-      <Connection Source="PE8" Destination="FC12.PE" dx1="1935.2941" />
     </DataConnections>
   </FBNetwork>
 </FBType>

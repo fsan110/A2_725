@@ -17,12 +17,16 @@
       <Event Name="REQ" Comment="Normal Execution Request" >
         <With Var="Candidate" />
         <With Var="PE" />
+        <With Var="LamportIN" />
       </Event>
       <Event Name="START" >
         <With Var="Block" />
       </Event>
       <Event Name="STOP" >
         <With Var="Block" />
+      </Event>
+      <Event Name="TimeStampIn" >
+        <With Var="LamportIN" />
       </Event>
     </EventInputs>
     <EventOutputs>
@@ -35,17 +39,23 @@
         <With Var="MotoRotate1" />
         <With Var="MotoRotate2" />
         <With Var="BlockCon" />
+        <With Var="LamportOUT" />
+      </Event>
+      <Event Name="TimeStampOut" >
       </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="Candidate" Type="BOOL" />
       <VarDeclaration Name="Block" Type="BOOL" />
       <VarDeclaration Name="PE" Type="BOOL" />
+      <VarDeclaration Name="LamportIN" Type="INT" />
+      <VarDeclaration Name="PE14" Type="BOOL" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="MotoRotate1" Type="BOOL" />
       <VarDeclaration Name="MotoRotate2" Type="BOOL" />
       <VarDeclaration Name="BlockCon" Type="BOOL" />
+      <VarDeclaration Name="LamportOUT" Type="INT" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
@@ -54,12 +64,12 @@
       <Parameter Name="Block" Value="0" />
       <Parameter Name="Candidate" Value="0" />
     </FB>
-    <FB Name="FC12" Type="ConveyorCTL" x="1882.3529" y="452.94116" />
+    <FB Name="FC12" Type="ConveyorCTLMultiCast" x="1882.3529" y="452.94116" />
     <EventConnections>
       <Connection Source="INIT" Destination="FC11.INIT" dx1="223.5294" />
       <Connection Source="REQ" Destination="FC11.REQ" dx1="217.64705" />
-      <Connection Source="FC12.INITO" Destination="INITO" dx1="2576.4705" />
-      <Connection Source="FC12.CNF" Destination="CNF" dx1="2558.8235" />
+      <Connection Source="FC12.INITO" Destination="INITO" dx1="2882.3528" />
+      <Connection Source="FC12.CNF" Destination="CNF" dx1="2864.7058" />
       <Connection Source="REQ" Destination="FC12.REQ" dx1="1770.5883" />
       <Connection Source="STOP" Destination="FC12.CAS_STOP" dx1="1758.8235" />
       <Connection Source="START" Destination="FC12.CAS_START" dx1="1741.1764" />
@@ -71,9 +81,11 @@
       <Connection Source="Block" Destination="FC12.Block" dx1="1752.9412" />
       <Connection Source="Candidate" Destination="FC12.Candidate" dx1="1688.2352" />
       <Connection Source="PE" Destination="FC12.PE" dx1="1800.0" />
-      <Connection Source="FC12.BlockCon" Destination="BlockCon" dx1="2635.294" />
+      <Connection Source="FC12.BlockCon" Destination="BlockCon" dx1="2941.1765" />
       <Connection Source="FC11.MotoRotate" Destination="MotoRotate1" dx1="1135.2941" />
-      <Connection Source="FC12.MotoRotate" Destination="MotoRotate2" dx1="2688.2354" />
+      <Connection Source="FC12.MotoRotate" Destination="MotoRotate2" dx1="2994.1177" />
+      <Connection Source="LamportIN" Destination="FC12.LamportIN" dx1="1682.3529" />
+      <Connection Source="FC12.LamportOUT" Destination="LamportOUT" dx1="2988.2354" />
     </DataConnections>
   </FBNetwork>
 </FBType>

@@ -59,7 +59,6 @@
       <VarDeclaration Name="PE14" Type="BOOL" />
       <VarDeclaration Name="GrantIn" Type="BOOL" />
       <VarDeclaration Name="LamportIn" Type="INT" />
-      <VarDeclaration Name="PE8" Type="BOOL" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="MotoRotate1" Type="BOOL" />
@@ -76,9 +75,9 @@
       <Parameter Name="ID" Value="7" />
     </FB>
     <FB Name="FC12" Type="ConveyorCTLMultiCast" x="2035.2941" y="617.64703" >
+      <Parameter Name="PE" Value="0" />
       <Parameter Name="Block" Value="0" />
       <Parameter Name="Candidate" Value="0" />
-      <Parameter Name="ID" Value="8" />
     </FB>
     <FB Name="FC13" Type="ConveyorCTL" x="4100.0" y="617.64703" >
       <Parameter Name="PE" Value="0" />
@@ -100,8 +99,6 @@
       <Connection Source="FC12.CNF" Destination="CNF" dx1="3017.647" />
       <Connection Source="TokenGranted" Destination="FC11.TokenGranted" dx1="94.117645" />
       <Connection Source="FC11.TokenGiven" Destination="TokenGiven" dx1="1370.5883" />
-      <Connection Source="TimeStampIn" Destination="FC12.TimeStampIn" dx1="1794.1176" />
-      <Connection Source="FC12.TimeStampOut" Destination="TimeStampOut" dx1="3176.4705" />
     </EventConnections>
     <DataConnections>
       <Connection Source="FC13.MotoRotate" Destination="MotoRotate3" dx1="4905.8823" />
@@ -117,9 +114,6 @@
       <Connection Source="PE14" Destination="FC12.PE14" dx1="1917.647" />
       <Connection Source="GrantIn" Destination="FC12.GrantIn" dx1="1876.4706" />
       <Connection Source="FC12.GrantOut" Destination="GrantOut" dx1="3094.1177" />
-      <Connection Source="LamportIn" Destination="FC12.LamportIN" dx1="1841.1764" />
-      <Connection Source="FC12.LamportOUT" Destination="LamportOut" dx1="3129.4116" />
-      <Connection Source="PE8" Destination="FC12.PE" dx1="1935.2941" />
     </DataConnections>
   </FBNetwork>
 </FBType>

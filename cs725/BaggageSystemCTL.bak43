@@ -191,7 +191,7 @@
         <FB Name="FCTwo" Type="TwoConCtlRingToken" x="5600.0" y="52.941177" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
-        <FB Name="TCOne" Type="ThreeConCtl" x="5594.1177" y="1794.1176" >
+        <FB Name="TCOne" Type="ThreeConCtl" x="5158.823" y="1782.3529" >
           <Parameter Name="Candidate" Value="1" />
         </FB>
         <FB Name="FCThree" Type="TwoConCtl" x="3182.3528" y="1923.5294" >
@@ -210,7 +210,7 @@
           <Parameter Name="LABEL" Value="&#34;BAG IN 4&#34;" />
         </FB>
         <FB Name="BagIn4" Type="PUBL_0" x="623.5294" y="2664.7058" />
-        <FB Name="FCFour" Type="TwoConCtlMultiCast" x="6923.5293" y="2723.5293" >
+        <FB Name="FCFour" Type="TwoConCtlMultiCast" x="6623.5293" y="1635.2941" >
           <Parameter Name="Candidate" Value="0" />
           <Parameter Name="Block" Value="0" />
         </FB>
@@ -220,7 +220,7 @@
           <Connection Source="BagInOne.INITO" Destination="BagIn1.INIT" dx1="158.82353" dx2="46.666664" dy="-773.3333" />
           <Connection Source="BagInOne.IND" Destination="BagIn1.REQ" dx1="152.94118" dx2="46.666664" dy="-886.6666" />
           <Connection Source="BagInThree.INITO" Destination="BagIn3.INIT" dx1="58.82353" />
-          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="29.411764" dx2="0.0" dy="-70.588234" />
+          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="29.411764" />
           <Connection Source="BagInTwo.INITO" Destination="BagIn2.INIT" dx1="47.058823" />
           <Connection Source="PE.IND" Destination="FCTwo.REQ" dx1="311.7647" dx2="129.41176" dy="-2205.8823" />
           <Connection Source="PE.IND" Destination="TCOne.REQ" dx1="1294.1177" dx2="126.666664" dy="-2206.6665" />
@@ -243,7 +243,7 @@
           <Connection Source="FCOne.CNF" Destination="ConControl.REQ" dx1="1388.2352" />
           <Connection Source="FCFour.CNF" Destination="ConControl.REQ" dx1="1052.9412" dx2="153.33333" dy="-2646.6665" />
           <Connection Source="FCTwo.CNF" Destination="ConControl.REQ" dx1="2023.5294" />
-          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="29.411764" dx2="0.0" dy="-958.8235" />
+          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="29.411764" />
           <Connection Source="BagIn3.INITO" Destination="BagInFour.INIT" dx1="29.411764" dx2="5.882353" dy="-1876.4706" />
           <Connection Source="BagIn4.INITO" Destination="PE.INIT" dx1="229.41176" dx2="26.666666" dy="693.3333" />
           <Connection Source="PE.INITO" Destination="ConControl.INIT" dx1="2276.4705" />
@@ -252,7 +252,7 @@
           <Connection Source="FCOne.INITO" Destination="TCOne.INIT" dx1="382.35294" />
           <Connection Source="FCOne.INITO" Destination="FCThree.INIT" dx1="29.411764" />
           <Connection Source="FCThree.INITO" Destination="FCFour.INIT" dx1="1029.4117" />
-          <Connection Source="FCTwo.TokenGiven" Destination="TCOne.TokenGranted" dx1="29.411764" dx2="0.0" dy="-335.2941" />
+          <Connection Source="FCTwo.TokenGiven" Destination="TCOne.TokenGranted" dx1="29.411764" />
           <Connection Source="TCOne.TokenGiven" Destination="FCTwo.TokenGranted" dx1="411.7647" />
           <Connection Source="TCOne.TimeStampOut" Destination="FCFour.TimeStampIn" dx1="576.4706" />
           <Connection Source="FCFour.TimeStampOut" Destination="TCOne.TimeStampIn" dx1="29.411764" dx2="5.882353" dy="-2388.2354" />

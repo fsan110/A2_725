@@ -101,7 +101,6 @@
       <Connection Source="PE13" Destination="FC11.PE13" dx1="229.41176" />
       <Connection Source="TokenIN" Destination="FC11.TokenIN" dx1="182.35294" />
       <Connection Source="FC11.TokenOUT" Destination="TokenOut" dx1="1335.2941" />
-      <Connection Source="PE14" Destination="FC12.PE14" dx1="1917.647" />
     </DataConnections>
   </FBNetwork>
 </FBType>

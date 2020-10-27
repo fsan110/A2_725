@@ -13,18 +13,21 @@
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
+        <With Var="PE14" />
       </Event>
       <Event Name="REQ" Comment="Normal Execution Request" >
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
         <With Var="LamportIN" />
+        <With Var="PE14" />
       </Event>
       <Event Name="CAS_STOP" >
       </Event>
       <Event Name="CAS_START" >
       </Event>
       <Event Name="TimeStampIn" >
+        <With Var="LamportIN" />
       </Event>
     </EventInputs>
     <EventOutputs>
@@ -84,19 +87,17 @@
         <ECAction Algorithm="IncrementClock" Output="CNF" />
       </ECState>
       <ECState Name="REPLY" x="2258.8235" y="888.2353" >
-        <ECAction Algorithm="IncrementClock" Output="CNF" />
-        <ECAction Algorithm="GrantAccess" />
+        <ECAction Algorithm="GrantAccess" Output="CNF" />
+        <ECAction Algorithm="IncrementClock" />
       </ECState>
       <ECState Name="DECIDER" x="1223.5294" y="1517.647" >
-        <ECAction Algorithm="IncrementClock" />
         <ECAction Algorithm="CheckLamport" Output="CNF" />
       </ECState>
       <ECState Name="ENTER_CS" x="1647.0588" y="1970.5883" >
-        <ECAction Algorithm="IncrementClock" Output="CNF" />
-        <ECAction Algorithm="StartConveyor" />
+        <ECAction Algorithm="StartConveyor" Output="CNF" />
       </ECState>
       <ECState Name="EXIT_CS" x="3594.1177" y="947.0588" >
-        <ECAction Algorithm="ResetLamport" Output="CNF" />
+        <ECAction Output="CNF" />
       </ECState>
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="923.5294" y="429.41174" />
       <ECTransition Source="INIT" Destination="START" Condition="1" x="552.94116" y="141.17647" />
@@ -113,7 +114,7 @@
       <ECTransition Source="EXIT_CS" Destination="DONT_WANT" Condition="REQ&#38;PE14" x="2452.9412" y="123.52941" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;GRANT := FALSE;&#10;&#10;System.out.println(this + &#34; &#34; + MotoRotate);&#10;System.out.println(MotoRotate);&#10;" />
+    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;&#10;System.out.println(this + &#34; &#34; + MotoRotate);&#10;System.out.println(MotoRotate);&#10;" />
   </Algorithm>
   <Algorithm Name="REQ" Comment="Normally executed algorithm" >
     <ST Text="System.out.println(this +  &#34; -> Candidate&#34; + Candidate);&#10;IF Candidate THEN&#10;IF lastPE !:= PE THEN&#10;IF NOT PE THEN&#10;BlockCon:= TRUE;&#10;System.out.println(&#34;BlockCon = true&#34;);&#10;ELSE&#10;BlockCon:=FALSE;&#10;System.out.println(&#34;BlockCon = false&#34;);&#10;END_IF&#10;lastPE := PE;&#10;END_IF&#10;IF lastBlock !:= Block THEN&#10;IF Block THEN&#10;STOP.serviceEvent(this);&#10;MotoRotate := FALSE;&#10;System.out.println(&#34;Cas Stop&#34;);&#10;ELSE&#10;START.serviceEvent(this);&#10;MotoRotate := TRUE;&#10;System.out.println(&#34;Cas Start&#34;);&#10;END_IF&#10;lastBlock := Block;&#10;END_IF&#10;END_IF&#10;" />
@@ -125,7 +126,7 @@
     <ST Text="MotoRotate := FALSE;&#10;System.out.println(this + &#34; Stop &#34; + MotoRotate);&#10;&#10;System.out.println(&#34;Stop &#34; + MotoRotate);&#10;" />
   </Algorithm>
   <Algorithm Name="CheckLamport" >
-    <Other Language="Java" Text="if(LamportIN.value &#60; lamportClock.value){&#10;GRANT.value = true;&#10;}else if(LamportIN.value > lamportClock.value){&#10;&#10;GRANT.value = false;&#10;}&#10;" />
+    <Other Language="Java" Text="if(LamportIN.value &#60; lamportClock.value){&#10;	GRANT.value = true;&#10;}else if(LamportIN.value > lamportClock.value){&#10;	&#10;	GRANT.value = false;&#10;}&#10;" />
   </Algorithm>
   <Algorithm Name="IncrementClock" >
     <Other Language="Java" Text="lamportClock.value++;&#10;" />
@@ -138,9 +139,6 @@
   </Algorithm>
   <Algorithm Name="StartConveyor" >
     <Other Language="Java" Text="BlockCon.value = false;&#10;MotoRotate.value = true;&#10;//System.out.println(ID.value +&#34;Start Conveyer&#34;);&#10;" />
-  </Algorithm>
-  <Algorithm Name="ResetLamport" >
-    <Other Language="Java" Text="lamportClock.value = 0;&#10;" />
   </Algorithm>
   </BasicFB>
 </FBType>

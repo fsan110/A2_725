@@ -13,18 +13,21 @@
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
+        <With Var="PE14" />
       </Event>
       <Event Name="REQ" Comment="Normal Execution Request" >
         <With Var="PE" />
         <With Var="Block" />
         <With Var="Candidate" />
         <With Var="LamportIN" />
+        <With Var="PE14" />
       </Event>
       <Event Name="CAS_STOP" >
       </Event>
       <Event Name="CAS_START" >
       </Event>
       <Event Name="TimeStampIn" >
+        <With Var="LamportIN" />
       </Event>
     </EventInputs>
     <EventOutputs>
@@ -125,7 +128,7 @@
     <ST Text="MotoRotate := FALSE;&#10;System.out.println(this + &#34; Stop &#34; + MotoRotate);&#10;&#10;System.out.println(&#34;Stop &#34; + MotoRotate);&#10;" />
   </Algorithm>
   <Algorithm Name="CheckLamport" >
-    <Other Language="Java" Text="if(LamportIN.value &#60; lamportClock.value){&#10;GRANT.value = true;&#10;}else if(LamportIN.value > lamportClock.value){&#10;&#10;GRANT.value = false;&#10;}&#10;" />
+    <Other Language="Java" Text="if(LamportIN.value &#60; lamportClock.value){&#10;	GRANT.value = true;&#10;}else if(LamportIN.value > lamportClock.value){&#10;	&#10;	GRANT.value = false;&#10;}&#10;" />
   </Algorithm>
   <Algorithm Name="IncrementClock" >
     <Other Language="Java" Text="lamportClock.value++;&#10;" />

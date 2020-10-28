@@ -206,14 +206,14 @@
         </FB>
         <FB Name="FCOne" Type="CSTwoConCtl" x="2794.4443" y="416.66666" />
         <FB Name="FCThree" Type="CSTwoConCtl" x="2700.0" y="2338.889" />
-        <FB Name="CentralServer" Type="CENTRAL_SERVER" x="4127.778" y="683.3333" />
+        <FB Name="CentralServer" Type="CENTRAL_SERVER" x="4094.4443" y="1533.3333" />
         <EventConnections>
           <Connection Source="START.COLD" Destination="BagInOne.INIT" dx1="27.777777" dx2="20.0" dy="-60.0" />
           <Connection Source="BagInThree.IND" Destination="BagIn3.REQ" dx1="61.111107" />
           <Connection Source="BagInOne.INITO" Destination="BagIn1.INIT" dx1="161.1111" dx2="46.666664" dy="-773.3333" />
           <Connection Source="BagInOne.IND" Destination="BagIn1.REQ" dx1="155.55554" dx2="46.666664" dy="-886.6666" />
           <Connection Source="BagInThree.INITO" Destination="BagIn3.INIT" dx1="61.111107" />
-          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="27.777777" />
+          <Connection Source="BagIn1.INITO" Destination="BagInTwo.INIT" dx1="27.777777" dx2="0.0" dy="-72.22222" />
           <Connection Source="BagInTwo.INITO" Destination="BagIn2.INIT" dx1="44.444443" />
           <Connection Source="PE.IND" Destination="FCTwo.REQ" dx1="105.55555" dx2="129.41176" dy="-2205.8823" />
           <Connection Source="PE.IND" Destination="TCOne.REQ" dx1="1294.4443" dx2="126.666664" dy="-2206.6665" />
@@ -226,7 +226,7 @@
           <Connection Source="BagIn4.CNF" Destination="FCFour.REQ" dx1="1661.1111" dx2="126.666664" dy="-3313.3333" />
           <Connection Source="FCFour.CNF" Destination="ConControl.REQ" dx1="1055.5555" dx2="153.33333" dy="-2646.6665" />
           <Connection Source="FCTwo.CNF" Destination="ConControl.REQ" dx1="2022.2222" />
-          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="27.777777" />
+          <Connection Source="BagIn2.INITO" Destination="BagInThree.INIT" dx1="27.777777" dx2="0.0" dy="-961.1111" />
           <Connection Source="BagIn3.INITO" Destination="BagInFour.INIT" dx1="27.777777" dx2="5.5555553" dy="-1877.7777" />
           <Connection Source="BagIn4.INITO" Destination="PE.INIT" dx1="227.77777" dx2="26.666666" dy="693.3333" />
           <Connection Source="PE.INITO" Destination="ConControl.INIT" dx1="2277.7776" />
@@ -247,13 +247,13 @@
           <Connection Source="FCThree.CNF" Destination="ConControl.REQ" dx1="3483.3333" />
           <Connection Source="TCOne.START" Destination="FCThree.START" dx1="27.777777" dx2="233.33333" dy="-2116.6665" />
           <Connection Source="TCOne.STOP" Destination="FCThree.STOP" dx1="27.777777" dx2="733.3333" dy="-2227.7776" />
-          <Connection Source="FCOne.RELEASE_TOKEN" Destination="CentralServer.RELEASE_1" dx1="449.99997" />
-          <Connection Source="FCOne.REQUEST_TOKEN" Destination="CentralServer.REQUEST_1" dx1="150.0" />
-          <Connection Source="FCThree.RELEASE_TOKEN" Destination="CentralServer.RELEASE_2" dx1="422.2222" />
-          <Connection Source="FCThree.REQUEST_TOKEN" Destination="CentralServer.REQUEST_2" dx1="438.8889" />
-          <Connection Source="CentralServer.GIVE_TOKEN_1" Destination="FCOne.RECEIVED_TOKEN" dx1="27.777777" />
-          <Connection Source="CentralServer.GIVE_TOKEN_2" Destination="FCThree.RECEIVED_TOKEN" dx1="27.777777" />
-          <Connection Source="FCOne.INITO" Destination="CentralServer.INIT" dx1="483.3333" />
+          <Connection Source="PE.INITO" Destination="CentralServer.INIT" dx1="1366.6666" />
+          <Connection Source="FCOne.REQUEST_TOKEN" Destination="CentralServer.REQUEST_1" dx1="477.77777" />
+          <Connection Source="FCOne.RELEASE_TOKEN" Destination="CentralServer.RELEASE_1" dx1="377.77777" />
+          <Connection Source="FCThree.RELEASE_TOKEN" Destination="CentralServer.RELEASE_2" dx1="355.55554" />
+          <Connection Source="FCThree.REQUEST_TOKEN" Destination="CentralServer.REQUEST_2" dx1="366.66666" />
+          <Connection Source="CentralServer.GIVE_TOKEN_1" Destination="FCOne.RECEIVED_TOKEN" dx1="27.777777" dx2="100.0" dy="-1788.8888" />
+          <Connection Source="CentralServer.GIVE_TOKEN_2" Destination="FCThree.RECEIVED_TOKEN" dx1="27.777777" dx2="66.666664" dy="-1905.5555" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TCOne.BlockCon" Destination="FCTwo.Block" dx1="27.777777" dx2="255.55554" dy="161.1111" />
@@ -275,7 +275,7 @@
           <Connection Source="FCFour.GrantOut" Destination="TCOne.GrantIn" dx1="27.777777" dx2="5.5555553" dy="1255.5555" />
           <Connection Source="TCOne.LamportOut" Destination="FCFour.LamportIN" dx1="733.3333" />
           <Connection Source="PE.RD_9" Destination="FCFour.PE14" dx1="1327.7777" />
-          <Connection Source="PE.RD_4" Destination="FCFour.PE" dx1="2133.3333" />
+          <Connection Source="PE.RD_4" Destination="FCFour.PE" dx1="1861.1111" />
           <Connection Source="PE.RD_6" Destination="TCOne.PE8" dx1="999.99994" />
           <Connection Source="FCOne.MotoRotate1" Destination="ConControl.SD_6" dx1="3572.2222" />
           <Connection Source="FCOne.MotoRotate2" Destination="ConControl.SD_7" dx1="3444.4443" />

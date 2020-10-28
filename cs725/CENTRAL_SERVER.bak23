@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="CENTRAL_SERVER" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.cs725;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+      </Event>
+      <Event Name="REQUEST_1" >
+      </Event>
+      <Event Name="REQUEST_2" >
+      </Event>
+      <Event Name="RELEASE_1" >
+      </Event>
+      <Event Name="RELEASE_2" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="GIVE_TOKEN_1" >
+      </Event>
+      <Event Name="GIVE_TOKEN_2" >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="requestQueue" Type="INT" ArraySize="25" />
+      <VarDeclaration Name="arrayStartIndex" Type="INT" />
+      <VarDeclaration Name="arrayEndIndex" Type="INT" />
+      <VarDeclaration Name="tAvailable" Type="BOOL" />
+      <VarDeclaration Name="tOwner" Type="INT" />
+      <VarDeclaration Name="req1" Type="BOOL" />
+      <VarDeclaration Name="req2" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="IDLE" Comment="Initial State" x="1994.4443" y="638.88885" >
+      </ECState>
+      <ECState Name="FCOne_REQ" x="305.55554" y="1244.4443" >
+        <ECAction Algorithm="ADD_QUEUE_REQ1" />
+      </ECState>
+      <ECState Name="FCThreeREQ" x="3938.8887" y="1155.5555" >
+        <ECAction Algorithm="ADD_QUEUE_REQ2" />
+      </ECState>
+      <ECState Name="INIT" x="1994.4443" y="150.0" >
+        <ECAction Algorithm="INIT" />
+      </ECState>
+      <ECState Name="GIVE_NEXT_TOKEN" x="2016.6666" y="2472.2222" >
+        <ECAction Algorithm="GIVE_TOKEN" />
+      </ECState>
+      <ECState Name="GIVE2" x="2905.5554" y="1849.9999" >
+        <ECAction Output="GIVE_TOKEN_2" />
+      </ECState>
+      <ECState Name="GIVE1" x="955.55554" y="1855.5555" >
+        <ECAction Output="GIVE_TOKEN_1" />
+      </ECState>
+      <ECState Name="RELEASED_TOKEN" x="6272.222" y="916.6666" >
+        <ECAction Algorithm="RETRIEVE_TOKEN" />
+      </ECState>
+      <ECTransition Source="IDLE" Destination="FCThreeREQ" Condition="REQUEST_2" x="2922.2222" y="894.4444" />
+      <ECTransition Source="IDLE" Destination="FCOne_REQ" Condition="REQUEST_1" x="1244.4443" y="888.88885" />
+      <ECTransition Source="IDLE" Destination="INIT" Condition="INIT" x="1994.4443" y="388.8889" />
+      <ECTransition Source="INIT" Destination="IDLE" Condition="1" x="1583.3333" y="150.0" />
+      <ECTransition Source="FCThreeREQ" Destination="GIVE_NEXT_TOKEN" Condition="1" x="3933.3333" y="2472.2222" />
+      <ECTransition Source="FCOne_REQ" Destination="GIVE_NEXT_TOKEN" Condition="1" x="300.0" y="2472.2222" />
+      <ECTransition Source="GIVE_NEXT_TOKEN" Destination="IDLE" Condition="!req1 &#38; !req2" x="1994.4443" y="1644.4443" />
+      <ECTransition Source="GIVE_NEXT_TOKEN" Destination="GIVE2" Condition="req2" x="2516.6665" y="2105.5554" />
+      <ECTransition Source="GIVE2" Destination="IDLE" Condition="1" x="2550.0" y="1388.8888" />
+      <ECTransition Source="GIVE1" Destination="IDLE" Condition="1" x="1511.1111" y="1188.8888" />
+      <ECTransition Source="GIVE_NEXT_TOKEN" Destination="GIVE1" Condition="req1" x="1450.0" y="2166.6665" />
+      <ECTransition Source="IDLE" Destination="RELEASED_TOKEN" Condition="RELEASE_1" x="6272.222" y="483.3333" />
+      <ECTransition Source="IDLE" Destination="RELEASED_TOKEN" Condition="RELEASE_2" x="5438.8887" y="916.6666" />
+      <ECTransition Source="RELEASED_TOKEN" Destination="GIVE_NEXT_TOKEN" Condition="1" x="3172.2222" y="3377.7776" />
+    </ECC>
+  <Algorithm Name="INIT" >
+    <ST Text="arrayStartIndex := 0;&#10;arrayEndIndex := 0;&#10;tAvailable := TRUE;&#10;tOwner := 0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="ADD_QUEUE_REQ2" >
+    <ST Text="requestQueue[arrayEndIndex] := 2;&#10;arrayEndIndex := ((arrayEndIndex + 1) % 5);&#10;System.out.println(&#34;********REQUEST: From Convayer 6********&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="ADD_QUEUE_REQ1" >
+    <ST Text="requestQueue[arrayEndIndex] := 1;&#10;arrayEndIndex := ((arrayEndIndex + 1) % 5);&#10;" />
+  </Algorithm>
+  <Algorithm Name="GIVE_TOKEN" >
+    <ST Text="IF tAvailable = TRUE THEN&#10;    IF requestQueue[arrayStartIndex] &#60;> 0 THEN&#10;        tAvailable := FALSE;&#10;        tOwner := requestQueue[arrayStartIndex];&#10;        requestQueue[arrayStartIndex] := 0;&#10;        arrayStartIndex := ((arrayStartIndex + 1) % 5);&#10;    END_IF;    &#10;&#10;    IF tOwner = 2 THEN&#10;System.out.println(&#34;*********6 Has Token********&#34;);&#10;    req2 := TRUE;&#10;    req1 := FALSE;&#10;&#10;    ELSIF tOwner = 1 THEN&#10;System.out.println(&#34;*********2 has Token********&#34;);&#10;    req1 := TRUE;&#10;    req2 := FALSE;&#10;    ELSIF tOwner = 0 THEN&#10;    req2 := FALSE;&#10;    req1 := FALSE;&#10;    END_IF;&#10;ELSE&#10;    req2 := FALSE;&#10;    req1 := FALSE;&#10;END_IF;&#10;" />
+  </Algorithm>
+  <Algorithm Name="RETRIEVE_TOKEN" >
+    <ST Text="tAvailable := TRUE;&#10;tOwner := 0;&#10;System.out.println(&#34;********RELEASED:	Server has token********&#34;);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

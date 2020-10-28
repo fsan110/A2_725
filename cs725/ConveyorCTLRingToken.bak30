@@ -69,40 +69,40 @@
       <VarDeclaration Name="lastBlock" Type="BOOL" InitialValue="0" />
     </InternalVars>
     <ECC >
-      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      <ECState Name="START" Comment="Initial State" x="552.94116" y="429.41174" >
       </ECState>
-      <ECState Name="INIT" Comment="Initialization" x="1066.6666" y="427.77777" >
+      <ECState Name="INIT" Comment="Initialization" x="1064.7058" y="429.41174" >
         <ECAction Algorithm="INIT" Output="INITO" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="NOTOKEN" x="933.3333" y="766.6666" >
+      <ECState Name="NOTOKEN" x="935.2941" y="764.7059" >
         <ECAction Algorithm="TokenAvailable" Output="TokenGiven" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="waitCS" Comment="waiting to enter critical section" x="322.2222" y="1577.7777" >
+      <ECState Name="waitCS" Comment="waiting to enter critical section" x="323.52942" y="1576.4706" >
         <ECAction Algorithm="StopConveyer" Output="STOP" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="HAVETOKEN" x="1427.7777" y="1494.4443" >
+      <ECState Name="HAVETOKEN" x="1429.4117" y="1494.1177" >
         <ECAction Algorithm="TokenNotAvailable" Output="TokenGiven" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="enterCS" x="1138.8888" y="2055.5554" >
+      <ECState Name="enterCS" x="1141.1764" y="2052.9412" >
         <ECAction Algorithm="StartConveyer" Output="START" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="exitCS" x="3083.3333" y="1194.4445" >
+      <ECState Name="exitCS" x="3082.3528" y="1194.1177" >
         <ECAction Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="661.1111" y="111.11111" />
-      <ECTransition Source="INIT" Destination="NOTOKEN" Condition="1" x="811.1111" y="594.4444" />
-      <ECTransition Source="NOTOKEN" Destination="waitCS" Condition="REQ&#38;!PE" Comment="When we want to enter the section" x="194.44444" y="1105.5555" />
-      <ECTransition Source="NOTOKEN" Destination="HAVETOKEN" Condition="TokenGranted&#38;!TokenIN" Comment="Other token is granting access" x="922.22217" y="1044.4445" />
-      <ECTransition Source="HAVETOKEN" Destination="NOTOKEN" Condition="REQ&#38;PE" Comment="Have the token but dont want to use critical section" x="1427.7777" y="1044.4445" />
-      <ECTransition Source="waitCS" Destination="enterCS" Condition="TokenGranted&#38;!TokenIN" Comment="Other process is giving access" x="516.6666" y="1783.3333" />
-      <ECTransition Source="HAVETOKEN" Destination="enterCS" Condition="REQ&#38;!PE" Comment="The process wants to enter critical section" x="1294.4443" y="1677.7777" />
-      <ECTransition Source="enterCS" Destination="exitCS" Condition="REQ&#38;PE" Comment="All items waiting go through" x="2955.5554" y="1933.3333" />
-      <ECTransition Source="exitCS" Destination="NOTOKEN" Condition="REQ&#38;!PE13" x="1666.6666" y="905.55554" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="658.8235" y="111.7647" />
+      <ECTransition Source="INIT" Destination="NOTOKEN" Condition="1" x="811.7647" y="594.1176" />
+      <ECTransition Source="NOTOKEN" Destination="waitCS" Condition="REQ&#38;!PE" Comment="When we want to enter the section" x="194.11765" y="1105.8823" />
+      <ECTransition Source="NOTOKEN" Destination="HAVETOKEN" Condition="TokenGranted&#38;!TokenIN" Comment="Other token is granting access" x="923.5294" y="1047.0588" />
+      <ECTransition Source="HAVETOKEN" Destination="NOTOKEN" Condition="REQ&#38;PE" Comment="Have the token but dont want to use critical section" x="1429.4117" y="1047.0588" />
+      <ECTransition Source="waitCS" Destination="enterCS" Condition="TokenGranted&#38;!TokenIN" Comment="Other process is giving access" x="517.64703" y="1782.3529" />
+      <ECTransition Source="HAVETOKEN" Destination="enterCS" Condition="REQ&#38;!PE" Comment="The process wants to enter critical section" x="1294.1177" y="1676.4706" />
+      <ECTransition Source="enterCS" Destination="exitCS" Condition="REQ&#38;PE" Comment="All items waiting go through" x="2952.9412" y="1935.2941" />
+      <ECTransition Source="exitCS" Destination="NOTOKEN" Condition="REQ&#38;!PE13" x="1664.7058" y="905.8823" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
     <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;&#10;System.out.println(this + &#34; &#34; + MotoRotate);&#10;System.out.println(MotoRotate);&#10;" />

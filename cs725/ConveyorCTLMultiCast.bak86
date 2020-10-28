@@ -90,7 +90,6 @@
       </ECState>
       <ECState Name="Exit_CS" x="1288.2352" y="1370.5883" >
         <ECAction Algorithm="GrantAccess" Output="CNF" />
-        <ECAction Output="START" />
       </ECState>
       <ECState Name="COMPARE_TIME" x="4717.647" y="905.8823" >
         <ECAction Algorithm="CheckLamport" Output="CNF" />

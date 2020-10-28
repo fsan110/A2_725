@@ -70,7 +70,6 @@
       <VarDeclaration Name="lastPE" Type="BOOL" InitialValue="1" />
       <VarDeclaration Name="lastBlock" Type="BOOL" InitialValue="0" />
       <VarDeclaration Name="lamportClock" Type="INT" />
-      <VarDeclaration Name="delayStop" Type="INT" />
     </InternalVars>
     <ECC >
       <ECState Name="START" Comment="Initial State" x="552.94116" y="429.41174" >
@@ -90,10 +89,10 @@
       </ECState>
       <ECState Name="Exit_CS" x="1288.2352" y="1370.5883" >
         <ECAction Algorithm="GrantAccess" Output="CNF" />
-        <ECAction Output="START" />
       </ECState>
       <ECState Name="COMPARE_TIME" x="4717.647" y="905.8823" >
         <ECAction Algorithm="CheckLamport" Output="CNF" />
+        <ECAction Algorithm="StopConveyor" Output="STOP" />
       </ECState>
       <ECState Name="STOP_CONVEYOR" x="5423.5293" y="2135.2942" >
         <ECAction Algorithm="StopConveyor" Output="STOP" />
@@ -103,8 +102,8 @@
         <ECAction Algorithm="StartConveyor" Output="START" />
         <ECAction Output="CNF" />
       </ECState>
-      <ECState Name="SecondBagCase" x="252.94118" y="1847.0588" >
-        <ECAction Algorithm="DelayedStop" Output="STOP" />
+      <ECState Name="SecondBagCase" x="352.94116" y="1817.647" >
+        <ECAction Algorithm="StopConveyor" Output="STOP" />
         <ECAction Output="CNF" />
       </ECState>
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="923.5294" y="429.41174" />
@@ -118,11 +117,9 @@
       <ECTransition Source="COMPARE_TIME" Destination="HELD" Condition="REQ&#38;GrantIn" x="3935.294" y="1617.647" />
       <ECTransition Source="STOP_CONVEYOR" Destination="START_CONVEYOR" Condition="REQ&#38;GrantIn" x="4682.353" y="2329.4116" />
       <ECTransition Source="START_CONVEYOR" Destination="HELD" Condition="1" x="2147.0588" y="2352.9412" />
-      <ECTransition Source="HELD" Destination="SecondBagCase" Condition="REQ&#38;PE" x="623.5294" y="2241.1765" />
-      <ECTransition Source="SecondBagCase" Destination="Exit_CS" Condition="REQ&#38;!PE14" x="629.41174" y="1370.5883" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;GrantOut := FALSE;&#10;delayStop := 0;&#10;&#10;&#10;System.out.println(&#34;Conveyor: &#34;+ID+&#34; Multicast INIT&#34;);&#10;" />
+    <ST Text="MotoRotate := TRUE;&#10;Block := FALSE;&#10;lamportClock := 0;&#10;GrantOut := FALSE;&#10;&#10;&#10;System.out.println(&#34;Conveyor: &#34;+ID+&#34; Multicast INIT&#34;);&#10;" />
   </Algorithm>
   <Algorithm Name="REQ" Comment="Normally executed algorithm" >
     <ST Text="System.out.println(this +  &#34; -> Candidate&#34; + Candidate);&#10;IF Candidate THEN&#10;IF lastPE !:= PE THEN&#10;IF NOT PE THEN&#10;BlockCon:= TRUE;&#10;System.out.println(&#34;BlockCon = true&#34;);&#10;ELSE&#10;BlockCon:=FALSE;&#10;System.out.println(&#34;BlockCon = false&#34;);&#10;END_IF&#10;lastPE := PE;&#10;END_IF&#10;IF lastBlock !:= Block THEN&#10;IF Block THEN&#10;STOP.serviceEvent(this);&#10;MotoRotate := FALSE;&#10;System.out.println(&#34;Cas Stop&#34;);&#10;ELSE&#10;START.serviceEvent(this);&#10;MotoRotate := TRUE;&#10;System.out.println(&#34;Cas Start&#34;);&#10;END_IF&#10;lastBlock := Block;&#10;END_IF&#10;END_IF&#10;" />
@@ -140,7 +137,7 @@
     <Other Language="Java" Text="lamportClock.value++;&#10;LamportOUT.value = lamportClock.value;&#10;" />
   </Algorithm>
   <Algorithm Name="GrantAccess" >
-    <Other Language="Java" Text="System.out.println(&#34;Conveyor: &#34;+ID.value+ &#34; grants access&#34;);&#10;&#10;GrantOut.value = true;&#10;delayStop.value = 0;&#10;" />
+    <Other Language="Java" Text="System.out.println(&#34;Conveyor: &#34;+ID.value+ &#34; grants access&#34;);&#10;&#10;GrantOut.value = true;&#10;" />
   </Algorithm>
   <Algorithm Name="StopConveyor" >
     <Other Language="Java" Text="System.out.println(&#34;Conveyor: &#34;+ID.value + &#34; Stop Conveyor Multicast!&#34;);&#10;MotoRotate.value = false;&#10;" />
@@ -153,9 +150,6 @@
   </Algorithm>
   <Algorithm Name="DenyAccess" >
     <Other Language="Java" Text="GrantOut.value = false;&#10;" />
-  </Algorithm>
-  <Algorithm Name="DelayedStop" >
-    <Other Language="Java" Text="if(delayStop.value >= 10){&#10;System.out.println(&#34;Conveyor: &#34;+ID.value + &#34; Stop Conveyor Multicast!&#34;);&#10;MotoRotate.value = false;&#10;}else{&#10;delayStop.value++;&#10;}&#10;" />
   </Algorithm>
   </BasicFB>
 </FBType>
